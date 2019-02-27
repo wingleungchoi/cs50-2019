@@ -15,23 +15,26 @@ int main(int argc, string argv[])
 {
     char* plaintext = get_string("Plaintext: ");
     printf("Plaintext input: %s\n", plaintext);
-    char * ciphertext = encrypt(plaintext);
-    printf("Ciphertext: %s\n", ciphertext);
-}
 
-char* encrypt(char* plaintext)
-{
     int n = strlen(plaintext);
-    char* ciphertext = "";
+    char ciphertext[n];
+
     for (int i = 0; i < n; i++)
     {
         char pi = plaintext[i];
         for (int j = 0; j < k; j ++)
         {
             pi++;
-            append(ciphertext, pi);
+            ciphertext[i] = pi;
         }
         printf("ciphertext: %c\n", pi);
     }
-    return ciphertext;
+    ciphertext[n] = '\0';
+    printf("Ciphertext: %s\n", ciphertext);
+    return 1;
+}
+
+char* encrypt(char* plaintext)
+{
+    return plaintext;
 }
