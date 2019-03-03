@@ -3,7 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
-int shift(char c);
+int getLetterKey(char c);
+int shift(char c, int key);
 
 int main(int argc, string argv[])
 {
@@ -25,20 +26,24 @@ int main(int argc, string argv[])
 
               return -1;
           }
-         int key = shift(argv[1][i]);
-         printf("key %i\n", key);
+         int letterKey = getLetterKey(argv[1][0]);
+         int newChar = shift(argv[1][i], letterKey);
+         printf("newChar %c\n", newChar);
       }
 }
 
-int shift(char c)
+int getLetterKey(char c)
+{
+    c = tolower(c);
+    return (c - 'a') % 3;
+}
+
+int shift(char c, int key)
 {
     // 'A' + (p[i] - 'A' + letterKey) % 26);
     printf("c input %c\n", c);
-    int key;
-    int lowerCase = (c - 'a') % 26;
-    int higherCase = (c - 'A') % 26;
-//     if (lowerCase > 0)  return lowerCase;
-    printf("lowerCase: %d\n", lowerCase);
-    printf("higherCase: %d\n", higherCase);
-    return 0;
+    int lowerCase = c - 'a';
+    int higherCase = c - 'A';
+    if (lowerCase >= 0)  return ('a' + (lowerCase + key));
+    return ('A' + (higherCase + key));
 }
