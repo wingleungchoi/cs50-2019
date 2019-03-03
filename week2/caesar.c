@@ -10,9 +10,11 @@ void append(char* s, char c)
 }
 
 char* encrypt(char* plaintext);
-int k = 1;
+// int k = 1;
 int main(int argc, string argv[])
 {
+    printf("Argc: %2d\n", atoi(argv[1]));
+    int k = atoi(argv[1]);
     char* plaintext = get_string("Plaintext: ");
     printf("Plaintext input: %s\n", plaintext);
 
